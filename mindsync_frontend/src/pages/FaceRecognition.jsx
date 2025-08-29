@@ -11,10 +11,18 @@ export default function FaceRecognitionPage() {
 
   useEffect(() => {
     let interval;
-    if (active) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+    let stream;
+    const start = async () => {
+      if (!navigator?.mediaDevices?.getUserMedia) return;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
         if (videoRef.current) videoRef.current.srcObject = stream;
-      });
+      } catch {
+        // Ignore failures in demo
+      }
+    };
+    if (active) {
+      start();
       // demo changing emotion
       const emotions = ["Calm", "Happy", "Neutral", "Anxious", "Focused"];
       interval = setInterval(() => {
@@ -23,7 +31,9 @@ export default function FaceRecognitionPage() {
     }
     return () => {
       clearInterval(interval);
-      if (videoRef.current && videoRef.current.srcObject) {
+      if (stream) {
+        stream.getTracks().forEach((t) => t.stop());
+      } else if (videoRef.current && videoRef.current.srcObject) {
         const tracks = videoRef.current.srcObject.getTracks();
         tracks.forEach((t) => t.stop());
       }

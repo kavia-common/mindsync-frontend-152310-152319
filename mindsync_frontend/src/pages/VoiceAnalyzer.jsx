@@ -63,18 +63,28 @@ export default function VoiceAnalyzerPage() {
 
   const start = async () => {
     if (recording) return;
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRef.current = stream;
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    audioCtxRef.current = audioCtx;
-    const source = audioCtx.createMediaStreamSource(stream);
-    sourceRef.current = source;
-    const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    analyserRef.current = analyser;
-    source.connect(analyser);
-    setRecording(true);
-    draw();
+    if (!navigator?.mediaDevices?.getUserMedia) {
+      // gracefully do nothing in unsupported environment
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRef.current = stream;
+      const AudioCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtor) return;
+      const audioCtx = new AudioCtor();
+      audioCtxRef.current = audioCtx;
+      const source = audioCtx.createMediaStreamSource(stream);
+      sourceRef.current = source;
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 2048;
+      analyserRef.current = analyser;
+      source.connect(analyser);
+      setRecording(true);
+      draw();
+    } catch {
+      // ignore for demo
+    }
   };
 
   const stop = () => {

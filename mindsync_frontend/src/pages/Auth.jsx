@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -9,6 +10,7 @@ import { useAuth } from "../lib/auth";
 export default function AuthPage() {
   /** Animated login/register with role selection and WCAG compliant forms. */
   const { login, register } = useAuth();
+  const navigate = useNavigate();
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "User" });
   const [error, setError] = useState("");
@@ -24,6 +26,7 @@ export default function AuthPage() {
       } else {
         await register(form.name, form.email, form.password, form.role);
       }
+      navigate("/dashboard", { replace: true });
     } catch (err) {
         // Normalize generic error in demo mode
         const message = typeof err?.message === "string" ? err.message : "Authentication error";

@@ -29,7 +29,7 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl p-4 md:p-6 space-y-4">
+    <main id="main" className="mx-auto max-w-4xl p-4 md:p-6 space-y-4">
       <h1 className="font-poppins text-3xl">Secure Chat</h1>
       <Card className="h-[60vh] flex flex-col">
         <div ref={ref} className="flex-1 overflow-y-auto space-y-2 p-2">
@@ -55,6 +55,6 @@ export default function ChatPage() {
           <Button onClick={send}>Send</Button>
         </div>
       </Card>
-    </div>
+    </main>
   );
 }

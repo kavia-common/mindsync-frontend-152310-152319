@@ -31,7 +31,7 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl p-4 md:p-6 space-y-6">
+    <main id="main" className="mx-auto max-w-7xl p-4 md:p-6 space-y-6">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="font-poppins text-3xl">Welcome back</h1>
         <p className="text-white/70">Your weekly overview at a glance.</p>

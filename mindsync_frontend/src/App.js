@@ -15,6 +15,8 @@ import ChatPage from "./pages/Chat";
 import VideoCallPage from "./pages/VideoCall";
 import SettingsPage from "./pages/Settings";
 import UnauthorizedPage from "./pages/Unauthorized";
+import AdminPage from "./pages/Admin";
+import NotFoundPage from "./pages/NotFound";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 // PUBLIC_INTERFACE
@@ -45,7 +47,10 @@ export default function App() {
             <Route path="/video" element={<VideoCallPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route element={<ProtectedRoute roles={["Admin"]} />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
