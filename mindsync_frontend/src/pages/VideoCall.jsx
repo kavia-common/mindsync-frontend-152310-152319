@@ -47,6 +47,6 @@ export default function VideoCallPage() {
           <Button onClick={() => setActive(false)} variant="ghost" disabled={!active}>End</Button>
         </div>
       </Card>
-    </div>
+    </main>
   );
 }

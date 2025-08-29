@@ -9,8 +9,8 @@ export default function NotFoundPage() {
         <h1 className="font-poppins text-3xl">Page not found</h1>
         <p className="text-white/70">The page you are looking for does not exist.</p>
         <div className="flex items-center justify-center gap-2">
-          <Button as="a" href="/">Go Home</Button>
-          <Button as="a" href="/dashboard" variant="ghost">Dashboard</Button>
+          <Button href="/">Go Home</Button>
+          <Button href="/dashboard" variant="ghost">Dashboard</Button>
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@ export default function UnauthorizedPage() {
       <div className="text-center space-y-3">
         <h1 className="font-poppins text-3xl">Unauthorized</h1>
         <p className="text-white/70">You do not have access to this page.</p>
-        <Button as="a" href="/">Back to Home</Button>
+        <Button href="/">Back to Home</Button>
       </div>
-    </div>
+    </main>
   );
 }

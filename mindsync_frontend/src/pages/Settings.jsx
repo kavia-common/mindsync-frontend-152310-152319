@@ -53,6 +53,6 @@ export default function SettingsPage() {
           <Button>Save changes</Button>
         </div>
       </Card>
-    </div>
+    </main>
   );
 }

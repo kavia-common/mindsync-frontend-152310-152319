@@ -91,6 +91,6 @@ export default function DashboardPage() {
           </Button>
         </Card>
       </div>
-    </div>
+    </main>
   );
 }
