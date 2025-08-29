@@ -1,7 +1,7 @@
-# MindSync Frontend (React + Tailwind + Framer Motion + Firebase + Recharts)
+# MindSync Frontend (React + Tailwind + Framer Motion + Recharts)
 
 A modern, calming, accessible SPA implementing:
-- Role-based authentication (User, Therapist, Admin) via Firebase Auth
+- Role-based authentication (User, Therapist, Admin) with frontend-only mock auth
 - Animated login/register
 - Emotion Capture, Voice Analyzer, Face Recognition preview
 - Dashboard with mood trends (Recharts)
@@ -9,31 +9,18 @@ A modern, calming, accessible SPA implementing:
 - Glassmorphism + neumorphism styling, light/dark themes
 - WCAG 2.1 focused components with keyboard support
 
-## Getting Started
+## Getting Started (Frontend-only demo)
 
 1) Install dependencies
    npm install
 
-2) Configure environment
-   Copy .env.example to .env and fill Firebase credentials:
-   - REACT_APP_FIREBASE_API_KEY
-   - REACT_APP_FIREBASE_AUTH_DOMAIN
-   - REACT_APP_FIREBASE_PROJECT_ID
-   - REACT_APP_FIREBASE_STORAGE_BUCKET
-   - REACT_APP_FIREBASE_MESSAGING_SENDER_ID
-   - REACT_APP_FIREBASE_APP_ID
-   Optional:
-   - REACT_APP_SITE_URL
-   - REACT_APP_DEFAULT_ROLE (User | Therapist | Admin)
-
-3) Start the app
+2) Start the app (no .env or API keys required)
    npm start
 
 ## Tech Stack
 - React 18, react-router v6
 - TailwindCSS 3, @tailwindcss/forms/typography
 - Framer Motion for micro-interactions
-- Firebase Auth (email/password)
 - Recharts (analytics)
 - Radix UI primitives, class-variance-authority, lucide icons
 
@@ -48,11 +35,11 @@ src/
     auth/ProtectedRoute.jsx
     layout/Navbar.jsx
     ui/{button,input,card}.jsx
-  lib/{firebase.js,auth.js}
+  lib/{auth.js}
   pages/
     {Home,Auth,Dashboard,EmotionCapture,VoiceAnalyzer,FaceRecognition,CrisisAlert,Chat,VideoCall,Settings,Unauthorized}.jsx
   App.js, index.js, index.css
 
 ## Notes
-- Role persistence is stored in localStorage for demo. Integrate with a backend/Firestore for production.
+- Authentication is a mock demo stored in localStorage (not secure). Replace with your backend of choice for production.
 - WebRTC and Face emotion detection are UI scaffolds; wire up signaling/ML as needed.

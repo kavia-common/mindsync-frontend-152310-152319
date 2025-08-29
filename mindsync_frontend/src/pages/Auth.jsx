@@ -25,7 +25,9 @@ export default function AuthPage() {
         await register(form.name, form.email, form.password, form.role);
       }
     } catch (err) {
-      setError(err.message || "Authentication error");
+        // Normalize generic error in demo mode
+        const message = typeof err?.message === "string" ? err.message : "Authentication error";
+        setError(message);
     }
   };
 

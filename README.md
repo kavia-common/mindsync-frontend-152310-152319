@@ -3,8 +3,11 @@
 - Container: mindsync_frontend
 - Framework: React (Create React App)
 
-To run:
+To run (frontend-only demo, no backend required):
 1) cd mindsync_frontend
 2) npm install
-3) Copy .env.example to .env and set Firebase vars
-4) npm start
+3) npm start
+
+Notes:
+- This workspace has been refactored to a frontend-only demo. No Firebase or API keys are required.
+- Authentication is mock-only and stored in localStorage for demo purposes (not secure for production).
