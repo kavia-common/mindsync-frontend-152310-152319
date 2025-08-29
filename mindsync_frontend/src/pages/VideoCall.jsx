@@ -23,7 +23,7 @@ export default function VideoCallPage() {
   }, [active]);
 
   return (
-    <main id="main" className="mx-auto max-w-5xl p-4 md:p-6 space-y-4">
+    <main id="main" className="mx-auto max-w-5xl p-4 md:p-6 space-y-4 pt-24">
       <h1 className="font-poppins text-3xl">Video Session</h1>
       <Card>
         <div className="grid md:grid-cols-2 gap-4">

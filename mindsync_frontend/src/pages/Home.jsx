@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function HomePage() {
   /** Landing page with calming gradient and quick navigation. */
   return (
-    <main id="main" className="relative overflow-hidden">
+    <main id="main" className="relative overflow-hidden pt-24">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(1000px_600px_at_10%_-10%,rgba(91,139,250,0.25),transparent),radial-gradient(800px_500px_at_90%_10%,rgba(160,132,238,0.25),transparent)]" />
       <div className="mx-auto max-w-5xl p-6 text-center space-y-4">
         <h1 className="font-poppins text-4xl md:text-5xl">MindSync</h1>
@@ -13,7 +13,9 @@ export default function HomePage() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link to="/auth" className="btn">Get started</Link>
-          <Link to="/dashboard" className="btn-ghost">View Dashboard</Link>
+          <Link to="/dashboard" className="btn-ghost">Dashboard</Link>
+          <Link to="/progress" className="btn-ghost">Progress</Link>
+          <Link to="/account" className="btn-ghost">Account</Link>
           <Link to="/emotion" className="btn-ghost">Emotion Capture</Link>
         </div>
       </div>

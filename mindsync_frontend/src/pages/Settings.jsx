@@ -11,7 +11,7 @@ export default function SettingsPage() {
   const [form, setForm] = useState({ name: "", contact: "", privacy: true });
 
   return (
-    <main id="main" className="mx-auto max-w-3xl p-4 md:p-6 space-y-4">
+    <main id="main" className="mx-auto max-w-3xl p-4 md:p-6 space-y-4 pt-24">
       <h1 className="font-poppins text-3xl">Settings</h1>
       <Card className="space-y-4">
         <div>

@@ -14,7 +14,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl p-4 md:p-6 space-y-6">
+    <div className="mx-auto max-w-5xl p-4 md:p-6 space-y-6 pt-24">
       <h1 className="font-poppins text-3xl">Admin Console</h1>
       <p className="text-white/70">Role-based access demo. Current role: <span className="font-medium">{role}</span></p>
 

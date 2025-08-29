@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import "./App.css";
 import { AuthProvider } from "./lib/auth";
@@ -17,6 +17,8 @@ import SettingsPage from "./pages/Settings";
 import UnauthorizedPage from "./pages/Unauthorized";
 import AdminPage from "./pages/Admin";
 import NotFoundPage from "./pages/NotFound";
+import ProgressPage from "./pages/Progress";
+import AccountPage from "./pages/Account";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 // PUBLIC_INTERFACE
@@ -39,6 +41,8 @@ export default function App() {
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
           <Route element={<ProtectedRoute roles={["User", "Therapist", "Admin"]} />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/account" element={<AccountPage />} />
             <Route path="/emotion" element={<EmotionCapturePage />} />
             <Route path="/voice" element={<VoiceAnalyzerPage />} />
             <Route path="/face" element={<FaceRecognitionPage />} />
