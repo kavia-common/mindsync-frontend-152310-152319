@@ -1,49 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./index.css";
+import "./App.css";
+import { AuthProvider } from "./lib/auth";
+import { Navbar } from "./components/layout/Navbar";
+import HomePage from "./pages/Home";
+import AuthPage from "./pages/Auth";
+import DashboardPage from "./pages/Dashboard";
+import EmotionCapturePage from "./pages/EmotionCapture";
+import VoiceAnalyzerPage from "./pages/VoiceAnalyzer";
+import FaceRecognitionPage from "./pages/FaceRecognition";
+import CrisisAlertPage from "./pages/CrisisAlert";
+import ChatPage from "./pages/Chat";
+import VideoCallPage from "./pages/VideoCall";
+import SettingsPage from "./pages/Settings";
+import UnauthorizedPage from "./pages/Unauthorized";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 // PUBLIC_INTERFACE
-function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
+export default function App() {
+  /** App root with router, theme handling, and role-protected routes. */
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = () => setTheme((t) => (t === "light" ? "dark" : "light"));
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar theme={theme} onToggleTheme={toggleTheme} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
+          <Route element={<ProtectedRoute roles={["User", "Therapist", "Admin"]} />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/emotion" element={<EmotionCapturePage />} />
+            <Route path="/voice" element={<VoiceAnalyzerPage />} />
+            <Route path="/face" element={<FaceRecognitionPage />} />
+            <Route path="/crisis" element={<CrisisAlertPage />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/video" element={<VideoCallPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
-
-export default App;
